@@ -109,9 +109,7 @@ Move the checkerboard — the UR3 will follow it, maintaining the target’s pos
 
 The λ parameter directly scales the **speed of convergence** in the IBVS control law:
 
-\[
-v_c = -λ L^+ e
-\]
+```[v_c = -λ L^+ e]```
 
 - A **high λ** makes the robot respond quickly to image error but risks oscillation if camera calibration or depth estimates are noisy.  
 - A **low λ** gives smoother, slower convergence but can lag behind moving targets.
@@ -133,4 +131,14 @@ To change the robot’s “resting distance”:
 - **Move robot further back:** increase `DESIRED_HALF_W` / `DESIRED_HALF_H`  
 - **Move robot closer:** decrease them  
 
+---
+
+## 🧩 Troubleshooting
+
+| Issue | Likely Cause | Fix |
+|-------|---------------|-----|
+| Publisher throws `WinError 10057` | Sending before connection established | Start the controller first, or use the patched `send_payload()` |
+| Robot barely moves | Steps too small / controller filtering | Increase `VC_SCALE` or `LAMBDA`, lower `CTRL_RATE_HZ` |
+| Motion unstable | λ too high or depth noise | Lower `LAMBDA` or increase `DEPTH_MEDIAN_KSIZE` |
+| Wrong motion direction | Incorrect `T_ce` orientation | Try flipping `Rx`, `Ry`, or `Rz` in `T_ce` |
 
