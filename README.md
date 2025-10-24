@@ -30,14 +30,10 @@ The robot continuously tracks a **checkerboard target** by keeping it centred an
 - Uses the depth map to estimate each corner’s **3D distance (Z)**.  
 - Computes the **image-based error** between current corner locations and desired image coordinates (`u_des`).  
 - Calculates the **camera-space velocity twist**  
-  \[
-  v_c = -λ L^+ e
-  \]  
+  `[v_c = -λ L^+ e]`
   using the IBVS interaction matrix **L**.  
 - Sends the 6D velocity vector  
-  \[
-  v_c = [v_x, v_y, v_z, ω_x, ω_y, ω_z]
-  \]  
+  [`v_c = [v_x, v_y, v_z, ω_x, ω_y, ω_z]`]  
   to the robot controller via TCP (`127.0.0.1:5566`).
 
 ---
@@ -54,4 +50,18 @@ The robot continuously tracks a **checkerboard target** by keeping it centred an
 ## 🚀 Running the System
 
 ### 1️⃣ Start the ROS & UR3 Environment
+### 2️⃣ Run the RealSense Publisher
 
+Plug in the RealSense camera and run (make sure to have the Windows RealSense SDK with python dependencies installed):
+`python realsense_robotpublisher.py`
+
+### 3️⃣ Run the UR3 Controller
+In a second terminal run:
+`python ur3_subscriber.py`
+
+Expected output shoudl look like this:
+`[ROS] Connected.
+[ROS] Subscribing to /joint_states
+[VC] Connecting to 127.0.0.1:5566 ...
+[VC] Connected.
+[CTRL] Streaming micro-steps. Ctrl+C to stop.`
