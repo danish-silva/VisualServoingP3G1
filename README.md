@@ -50,7 +50,6 @@ pip install -r requirements.txt
   [`v_c = [v_x, v_y, v_z, ω_x, ω_y, ω_z]`]  
   to the robot controller via TCP (`127.0.0.1:5566`).
 
----
 
 ### The UR3 Controller
 - Connects to **rosbridge** (`192.168.27.1:9090`) to interface with the robot.  
