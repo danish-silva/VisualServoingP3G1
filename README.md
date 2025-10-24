@@ -65,7 +65,7 @@ pip install -r requirements.txt
 ### 1. Start the ROS & UR3 Environment
 ### 2. Run the RealSense Publisher
 
-Plug in the RealSense camera and run (make sure to have the Windows RealSense SDK with python dependencies installed):
+Plug in the RealSense camera and run:
 `python realsense_robotpublisher.py`
 
 Expected output should look like this:
