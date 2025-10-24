@@ -58,6 +58,21 @@ pip install -r requirements.txt
 - Integrates small time steps (≈15–20 Hz) to create **micro-step trajectories**, which are published to  
   `/ur/scaled_pos_joint_traj_controller/command`.
 
+### System Architecture Overview
+
+Below is a high-level overview of the system workflow showing how data flows from the camera through the visual processing and control modules to the UR3 robot.
+
+```mermaid
+flowchart LR
+    A[🎥 RealSense Camera\nRGB + Depth Streams] --> B[🧠 Visual Processing (Python + OpenCV)\n• Checkerboard detection\n• Subpixel refinement\n• Depth estimation\n• Image-space error (e = u - u_des)]
+    B --> C[📈 IBVS Control Computation\n• Interaction matrix (L)\n• v_c = -λ L⁺ e\n• Velocity smoothing & scaling]
+    C --> D[🛰️ TCP Communication\n• Transmit v_c (6×1) to UR3 Controller\n• 127.0.0.1:5566]
+    D --> E[🤖 UR3 Controller (Python + ROSLIBPY)\n• Receive v_c and current q\n• Compute q̇ = J⁺ Ad⁻¹ v_c\n• Integrate micro-step positions]
+    E --> F[🌐 ROS Bridge Server (UR3 Host)\n• Topics:\n   - /ur/joint_states\n   - /ur/scaled_pos_joint_traj_controller/command]
+    F --> G[🦾 UR3 Robot Manipulator\n• Executes joint trajectory\n• Updates pose\n• Feeds back new joint states]
+    G --> E
+    E --> D
+```
 ---
 
 ## 🚀 Running the System
