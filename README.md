@@ -145,7 +145,7 @@ To change the robot’s “resting distance”:
 
 ## 👤 Authors
 
-**Danish Silva** 
-**Ahemed Ahmed**
-**Mahak Singh**
-**Dinesh Saravanan**
+- **Danish Silva** 
+- **Ahmed Ahmed**
+- **Mahak Singh**
+- **Dinesh Saravanan**
