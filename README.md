@@ -141,3 +141,11 @@ To change the robot’s “resting distance”:
 | Motion unstable | λ too high or depth noise | Lower `LAMBDA` or increase `DEPTH_MEDIAN_KSIZE` |
 | Wrong motion direction | Incorrect `T_ce` orientation | Try flipping `Rx`, `Ry`, or `Rz` in `T_ce` |
 
+---
+
+## 👤 Authors
+
+**Danish Silva** 
+**Ahemed Ahmed**
+**Mahak Singh**
+**Dinesh Saravanan**
