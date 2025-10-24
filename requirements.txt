@@ -1,0 +1,6 @@
+pyrealsense2
+numpy
+opencv
+roslibpy
+roboticstoolbox
+spatialmath
