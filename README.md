@@ -137,7 +137,6 @@ To change the robot’s “resting distance”:
 
 | Issue | Likely Cause | Fix |
 |-------|---------------|-----|
-| Publisher throws `WinError 10057` | Sending before connection established | Start the controller first, or use the patched `send_payload()` |
 | Robot barely moves | Steps too small / controller filtering | Increase `VC_SCALE` or `LAMBDA`, lower `CTRL_RATE_HZ` |
 | Motion unstable | λ too high or depth noise | Lower `LAMBDA` or increase `DEPTH_MEDIAN_KSIZE` |
 | Wrong motion direction | Incorrect `T_ce` orientation | Try flipping `Rx`, `Ry`, or `Rz` in `T_ce` |
