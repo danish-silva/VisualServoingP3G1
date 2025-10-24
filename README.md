@@ -55,6 +55,12 @@ The robot continuously tracks a **checkerboard target** by keeping it centred an
 Plug in the RealSense camera and run (make sure to have the Windows RealSense SDK with python dependencies installed):
 `python realsense_robotpublisher.py`
 
+Expected output should look like this:
+```bash
+[INFO] Listening on port.
+[INFO] fx=608.4 fy=607.0 cx=325.8 cy=246.8 depth_scale=0.001000
+```
+
 ### 3️⃣ Run the UR3 Controller
 In a second terminal run:
 `python ur3_subscriber.py`
@@ -67,6 +73,8 @@ Expected output should look like this:
 [VC] Connected.
 [CTRL] Streaming micro-steps. Ctrl+C to stop.
 ```
+
+Now you’ll see a live camera window with checkerboard tracking overlays.
 
 ---
 
@@ -94,4 +102,35 @@ Expected output should look like this:
 | `T_ce` | Tool-to-camera transform | Adjust to your camera mount orientation |
 
 Move the checkerboard — the UR3 will follow it, maintaining the target’s position and scale in the image.
+
+---
+
+## ⚖️ How the λ (Lambda) Value Was Chosen
+
+The λ parameter directly scales the **speed of convergence** in the IBVS control law:
+
+\[
+v_c = -λ L^+ e
+\]
+
+- A **high λ** makes the robot respond quickly to image error but risks oscillation if camera calibration or depth estimates are noisy.  
+- A **low λ** gives smoother, slower convergence but can lag behind moving targets.
+
+I started with **λ = 0.3**, observing that the robot lagged noticeably when the checkerboard moved quickly.  
+Gradually increasing to **λ = 0.5** produced **stable, responsive motion with minimal overshoot**, balancing noise sensitivity and responsiveness for the RealSense D435’s depth accuracy (~2–3 mm at 0.4 m range).
+
+This value may vary depending on:
+- Camera–target distance  
+- Frame rate / latency  
+- Robot controller speed  
+
+---
+
+## 🧭 Adjusting the Desired Checkerboard Position
+
+To change the robot’s “resting distance”:
+
+- **Move robot further back:** increase `DESIRED_HALF_W` / `DESIRED_HALF_H`  
+- **Move robot closer:** decrease them  
+
 
