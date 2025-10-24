@@ -15,11 +15,25 @@ The robot continuously tracks a **checkerboard target** by keeping it centred an
 
 ---
 
-## 🧰 System Requirements
+## 🧰 Requirements & Installation
 
 - **Intel RealSense D4xx** or similar depth camera  
 - **Universal Robots UR3** (connected to ROS machine)  
 - **ROS bridge** running on the UR3 Pi
+
+### Python Dependencies
+
+Install all required Python libraries with:
+
+```pip install -r requirements.txt```
+
+You can also create a virtual environment to isolate dependencies:
+
+```bash
+python -m venv .venv
+.\.venv\Scripts\activate
+pip install -r requirements.txt
+```
 
 ---
 
