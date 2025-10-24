@@ -60,8 +60,9 @@ In a second terminal run:
 `python ur3_subscriber.py`
 
 Expected output shoudl look like this:
-`[ROS] Connected.
+```bash
+[ROS] Connected.
 [ROS] Subscribing to /joint_states
 [VC] Connecting to 127.0.0.1:5566 ...
 [VC] Connected.
-[CTRL] Streaming micro-steps. Ctrl+C to stop.`
+[CTRL] Streaming micro-steps. Ctrl+C to stop.
