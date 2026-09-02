@@ -1,4 +1,4 @@
-# UR3 RealSense Visual Servoing - Project 3 GROUP 1
+# UR3e RealSense Visual Servoing
 
 This project implements an **eye-in-hand Image-Based Visual Servoing (IBVS)** system using an **Intel RealSense** RGB-D camera and a **UR3 robotic arm** controlled via ROS (through `rosbridge`).  
 
@@ -161,4 +161,3 @@ To change the robot’s “resting distance”:
 - **Danish Silva** 
 - **Ahmed Ahmed**
 - **Mahak Singh**
-- **Dinesh Saravanan**
